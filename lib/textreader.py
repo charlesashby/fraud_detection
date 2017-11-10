@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 
+
 '''
 class TextReader(object):
     """ Data Set Handler """
@@ -52,6 +53,13 @@ class TextReader(object):
         zeros = np.random.randint(low=0, high=n_zeros, size=[n_batch, int(size/2)])
 
         for i in range(n_batch):
-            data = self.training_set_ones[ones[i], :] + self.training_set_zeros[zeros[i], :]
+            #data = self.training_set_ones[ones[i], :] + self.training_set_zeros[zeros[i], :]
+            data = np.concatenate((self.training_set_ones[ones[i], :],
+                                   self.training_set_zeros[zeros[i], :]), axis=0)
             inputs, targets = data[:, :-2], data[:, -2:]
             yield inputs, targets
+
+
+if __name__ == '__main__':
+    t = TextReader()
+    m = t.iterate_mini_batch()
