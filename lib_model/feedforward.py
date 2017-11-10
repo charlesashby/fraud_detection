@@ -60,7 +60,7 @@ class FeedForwardNN(object):
                     _, c, a = sess.run([optimizer, cost, acc], feed_dict={self.X: batch_x, self.Y: batch_y})
 
                     loss += c
-                    n_batch = int(len(reader.training_set_zeros.shape[0]) / BATCH_SIZE)
+                    n_batch = int(reader.training_set_zeros.shape[0] / BATCH_SIZE)
                     if batch % 100 == 0:
                         # Compute Accuracy on the Training set and print some info
                         print('Epoch: %5d/%5d -- batch: %5d/%5d -- Loss: %.4f -- Train Accuracy: %.4f' %
@@ -99,7 +99,7 @@ class FeedForwardNN(object):
                             if patience <= 0:
                                 DONE = True
                                 break
-                        n_batch = int(len(reader.test_set_zeros.shape[0]) / BATCH_SIZE)
+                        n_batch = int(reader.test_set_zeros.shape[0] / BATCH_SIZE)
 
                         print('Epoch: %5d/%5d -- batch: %5d/%5d -- Valid Accuracy: %.4f' %
                              (epoch, EPOCHS, batch, n_batch, mean_acc))
@@ -117,7 +117,7 @@ class FeedForwardNN(object):
             'BATCH_SIZE':       128,
             'EPOCHS':           500,
             'learning_rate':    0.0001,
-            'patience':         5000
+            'patience':         5000000
         }
 
 if __name__ == '__main__':
